@@ -1,4 +1,5 @@
 lista_spesa =[]
+
 def aggiungiElementi():
     elemento = input("Inserisci l'elemento da aggiungere:")
     lista_spesa.append(elemento)

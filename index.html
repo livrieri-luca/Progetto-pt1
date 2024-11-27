@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina di Test</title>
+    <title>Lista della Spesa</title>
 </head>
 <body>
-    <h1>Per ora funziona tutto!</h1>
+    <h1>La tua Lista della Spesa</h1>
+    
+    <!-- Se la lista contiene degli elementi, mostra la lista -->
+    {% if lista %}
+        <ul>
+        {% for elemento in lista %}
+            <li>
+                {{ elemento }}
+                <!-- Form per rimuovere un elemento dalla lista -->
+                <form action="/rimuovi/{{ loop.index0 }}" method="post" style="display:inline;">
+                    <button type="submit">Rimuovi</button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <!-- Se la lista è vuota, mostra un messaggio -->
+        <p>La lista della spesa è vuota.</p>
+    {% endif %}
+
+    <!-- Form per aggiungere un nuovo elemento alla lista -->
+    <form action="/aggiungi" method="post">
+        <input type="text" name="elemento" placeholder="Aggiungi un elemento" required>
+        <button type="submit">Aggiungi</button>
+    </form>
 </body>
 </html>

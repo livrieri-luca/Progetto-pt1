@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista della Spesa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #007BFF;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f0f0f0;
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        form {
+            margin: 0;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input[type="text"] {
+            width: calc(100% - 110px);
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .empty-message {
+            text-align: center;
+            font-style: italic;
+            color: #888;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .form-group button {
+            flex: 1;
+            margin-left: 10px;
+        }
+        .form-group button:first-child {
+            margin-left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>La tua Lista della Spesa</h1>
+        {% if lista %}
+        <ul>
+            {% for elemento in lista %}
+            <li>
+                <span>{{ elemento }}</span>
+                <form action="/rimuovi/{{ loop.index0 }}" method="post" style="display:inline;">
+                    <button type="submit">Rimuovi</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="empty-message">La lista è vuota.</p>
+        {% endif %}
+
+        <form action="/aggiungi" method="post">
+            <div class="form-group">
+                <input type="text" name="elemento" placeholder="Aggiungi un elemento" required>
+                <button type="submit">Aggiungi</button>
+            </div>
+        </form>
+
+        <form action="/svuota" method="post" style="margin-top: 10px; text-align: right;">
+            <button type="submit">Svuota</button>
+        </form>
+    </div>
+</body>
+</html>

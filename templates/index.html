@@ -80,33 +80,29 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>La tua Lista della Spesa</h1>
-        {% if lista %}
+    <h1>Lista spesa</h1>
+    <form action="/aggiungi" method="post">
+        <input type="text" name="elemento" placeholder="Aggiungi un elemento" required>
+        <button type="submit">Aggiungi</button>
+    </form>
+    <br>
+    <div id = "cosa">
+        {% if lista_spesa %}
         <ul>
-            {% for elemento in lista %}
+            {% for elemento in lista_spesa %}
             <li>
-                <span>{{ elemento }}</span>
-                <form action="/rimuovi/{{ loop.index0 }}" method="post" style="display:inline;">
-                    <button type="submit">Rimuovi</button>
-                </form>
+                {{ elemento.elemento }}
+                <form action="/rimuovi/{{ elemento.id }}" method="post" style="display:inline;">
+                <button type="submit">Rimuovi</button></form>
             </li>
             {% endfor %}
-        </ul>
         {% else %}
-        <p class="empty-message">La lista è vuota.</p>
+            <p>La lista è vuota.</p>
         {% endif %}
-
-        <form action="/aggiungi" method="post">
-            <div class="form-group">
-                <input type="text" name="elemento" placeholder="Aggiungi un elemento" required>
-                <button type="submit">Aggiungi</button>
-            </div>
-        </form>
-
-        <form action="/svuota" method="post" style="margin-top: 10px; text-align: right;">
-            <button type="submit">Svuota</button>
+        </ul>
+        <form action="/svuota" method="post" style="display:inline;">
+            <button type="submit">Svuota lista</button>
         </form>
     </div>
+    <br>
 </body>
-</html>

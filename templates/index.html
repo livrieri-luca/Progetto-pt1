@@ -6,78 +6,142 @@
     <title>Lista della Spesa</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
         }
+    
         h1 {
             text-align: center;
-            margin-top: 20px;
-            color: #007BFF;
+            color: #ffffff;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            letter-spacing: 1.5px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
         }
+    
         .container {
             max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
         }
+    
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
         ul {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
+            margin-top: 20px;
         }
+    
         li {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #f0f0f0;
-            margin-bottom: 10px;
-            padding: 10px 15px;
-            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin-bottom: 12px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        form {
-            margin: 0;
+    
+        li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
+    
+        li span {
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+            flex-grow: 1; /* Questo garantisce che il testo occupi tutto lo spazio disponibile */
+        }
+    
         button {
-            background-color: #007BFF;
-            color: #fff;
+            background: linear-gradient(135deg, #ff6f61, #ff3a29);
+            color: white;
             border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
+            padding: 8px 16px;
             font-size: 14px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            margin-left: 10px; /* Spazio tra il testo e il bottone */
         }
+    
         button:hover {
-            background-color: #0056b3;
+            background: linear-gradient(135deg, #ff3a29, #ff6f61);
+            transform: scale(1.05);
         }
-        input[type="text"] {
-            width: calc(100% - 110px);
-            padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+    
+        button:focus {
+            outline: none;
         }
-        .empty-message {
-            text-align: center;
-            font-style: italic;
-            color: #888;
-        }
+    
         .form-group {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
+            align-items: center; /* Assicurati che gli input e i bottoni siano allineati */
         }
-        .form-group button {
-            flex: 1;
-            margin-left: 10px;
+    
+        .empty-message {
+            text-align: center;
+            color: #888;
+            font-style: italic;
+            font-size: 1.1rem;
         }
-        .form-group button:first-child {
-            margin-left: 0;
+    
+        #clear-list-btn {
+            background: #FF3A29;
+            color: white;
+        }
+    
+        #clear-list-btn:hover {
+            background: #e5301a;
+        }
+    
+        /* Media Queries per dispositivi mobili */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+    
+            input[type="text"] {
+                width: calc(100% - 90px);
+            }
+    
+            button {
+                font-size: 13px;
+                padding: 7px 14px;
+            }
         }
     </style>
+    
+    
+    
 </head>
 <body>
     <h1>Lista spesa</h1>
